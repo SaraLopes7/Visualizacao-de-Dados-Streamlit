@@ -6,27 +6,6 @@ import seaborn as sns
 
 # Importando os 4 arquivos CSV
 df_employee = pd.read_csv('data\employee_performance.csv')
-df_health = pd.read_csv('data\health_data.csv')
-df_machinery = pd.read_csv('data\machinery_data.csv')
-df_sales = pd.read_csv('data\sales_data.csv')
-
-# Visualização:
-print("\n") 
-print("Exibindo as 5 primeiras linhas do Employee Performance DataFrame:\n")
-print(df_employee.head())
-print("\n") 
-
-print("Exibindo as 5 primeiras linhas do Health DataFrame:\n")
-print(df_health.head())
-print("\n") 
-
-print("Exibindo as 5 primeiras linhas do Machinery DataFrame:\n")
-print(df_machinery.head())
-print("\n") 
-
-print("Exibindo as 5 primeiras linhas do Sales DataFrame:\n")
-print(df_sales.head())
-print("\n") 
 
 # Employee Performance: Identificar os funcionários com melhor desempenho e os fatores que influenciam isso.
 
@@ -60,7 +39,6 @@ st.dataframe(low_performance)
 best_performance_by_dept = df_employee.loc[df_employee.groupby('Department')['Performance_Score'].idxmax()]
 st.subheader("Melhores Funcionários por Departamento")
 st.dataframe(best_performance_by_dept)
-
 
 # Conclusões
 st.header("Conclusões")
