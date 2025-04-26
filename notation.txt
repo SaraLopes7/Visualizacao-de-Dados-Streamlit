@@ -1,0 +1,64 @@
+# Health Data: Analisar a saúde dos funcionários e como isso impacta o desempenho.
+# Machinery Data: Avaliar a eficiência das máquinas e sua relação com a produtividade.
+# Sales Data: Identificar tendências de vendas e insights para melhorar os resultados.
+
+# Exemplo: Gráfico de pizza para categorias de saúde
+health_counts = df_health['health_category'].value_counts()
+
+fig, ax = plt.subplots()
+ax.pie(health_counts, labels=health_counts.index, autopct='%1.1f%%', startangle=90)
+ax.axis('equal')  # Garantir que o gráfico seja um círculo
+st.subheader("Distribuição de Categorias de Saúde")
+st.pyplot(fig)
+
+# Exemplo: Gráfico de linha para eficiência média ao longo do tempo
+efficiency_over_time = df_machinery.groupby('date')['efficiency'].mean()
+
+st.subheader("Eficiência Média das Máquinas ao Longo do Tempo")
+st.line_chart(efficiency_over_time)
+
+# Exemplo: Gráfico de dispersão para saúde vs desempenho
+fig, ax = plt.subplots()
+sns.scatterplot(data=df_health, x='health_score', y=df_employee['performance_score'], ax=ax)
+ax.set_title("Correlação entre Saúde e Desempenho")
+st.subheader("Correlação entre Saúde e Desempenho")
+st.pyplot(fig)
+
+# Exemplo: Gráfico de área para vendas ao longo do tempo
+sales_over_time = df_sales.groupby('date')['sales'].sum()
+
+st.subheader("Tendências de Vendas ao Longo do Tempo")
+st.area_chart(sales_over_time)
+
+# Seção 1: Desempenho dos Funcionários
+st.header("1. Desempenho dos Funcionários")
+st.write("Analisando o desempenho médio por departamento:")
+avg_performance = df_sales.groupby('department')['performance_score'].mean()
+st.bar_chart(avg_performance)
+
+# Título do projeto
+st.title("Data Storytelling: Insights sobre Desempenho e Vendas")
+
+# Seção 1: Employee Performance
+st.header("1. Desempenho dos Funcionários")
+st.write("Analisando os dados de desempenho dos funcionários:")
+st.dataframe(df_employee.head())
+
+# Seção 2: Saúde dos Funcionários
+st.header("2. Saúde dos Funcionários")
+st.write("Explorando os dados de saúde e seu impacto no desempenho:")
+st.dataframe(df_health.head())
+
+# Seção 3: Eficiência das Máquinas
+st.header("3. Eficiência das Máquinas")
+st.write("Analisando a eficiência das máquinas:")
+st.dataframe(df_machinery.head())
+
+# Seção 4: Tendências de Vendas
+st.header("4. Tendências de Vendas")
+st.write("Explorando os dados de vendas para identificar tendências:")
+st.dataframe(df_sales.head())
+
+# Conclusão
+st.subheader("Conclusão")
+st.write("Com base nos dados analisados, podemos propor soluções e insights para melhorar o desempenho e as vendas.")
