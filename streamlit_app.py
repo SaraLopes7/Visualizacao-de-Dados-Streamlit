@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Carregar os dados
-df = pd.read_csv("data\employee_performance.csv")
+df = pd.read_csv("data/employee_performance.csv")
 
 # Título do Dashboard
 st.title('Data Storytelling - Análise Interativa')
